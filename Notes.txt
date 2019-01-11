@@ -1,0 +1,16 @@
+App = collection of modules
+Module = a wepage
+
+Component  = specific parts of a webpage
+    - Contains HTML
+    - Logic Code ( typescript)
+
+
+module  = collection of Components + Services
+Services = back end stuff (Business Logic)
+
+
+Component
+    - Template = view = HTML
+    - Class = typescript = code ;)
+    - Metadata = info
