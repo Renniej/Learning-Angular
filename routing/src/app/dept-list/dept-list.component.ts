@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {Router } from '@angular/router'
+import {Router, ActivatedRoute, ParamMap } from '@angular/router'
 
 @Component({
   selector: 'app-dept-list',
   template: `
    
   <ul>
-    <li (click)="onClick(dept)" *ngFor="let dept of departments">
+    <li [class.selected]="iSelected(dept)" (click)="onClick(dept)" *ngFor="let dept of departments">
       {{dept.id}}  {{dept.name}}
     </li>
 
@@ -15,14 +15,18 @@ import {Router } from '@angular/router'
   `,
   styles: [`
   
-  
+      .selected{
+
+        font-weight: bold;
+
+      }
   
   
   `]
 })
 export class DeptListComponent implements OnInit {
 
-
+  public selectedId;
   public departments = [
 
     {id : 1 , name : "back-end"},
@@ -32,14 +36,27 @@ export class DeptListComponent implements OnInit {
     {id : 5 , name : "hardware IT"}
   ]
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private route : ActivatedRoute) { }
 
   ngOnInit() {
+
+    
+    this.route.paramMap.subscribe((params: ParamMap) =>{
+      
+      let id = parseInt(params.get('id'))
+      this.selectedId = id;
+  
+    });
+
   }
 
 
-  onClick(dept ){
+  onClick(dept){
       this.router.navigate(['departments', dept.id])  //Path, route parameter(dept.id)
+  }
+
+  iSelected(dept){
+    return dept.id === this.selectedId;
   }
 
 
