@@ -4,10 +4,13 @@ import { EmpListComponent } from './emp-list/emp-list.component';
 import { DeptListComponent } from './dept-list/dept-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+import { DeptDetailsComponent } from './dept-details/dept-details.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'randomEmp', redirectTo : '/employees' },
   {path : 'departments' ,component : DeptListComponent},
+  {path: 'departments/:id', component: DeptDetailsComponent},
   {path: 'employees', component :EmpListComponent},
   {path :'**' ,component: PageNotFoundComponent}
 
