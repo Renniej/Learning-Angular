@@ -6,9 +6,10 @@ import { EmployeeService } from '../employee.service';
   template: ` 
   
   <h2>Employee Details</h2>
+  <h3>{{errorMsg}}</h3>
   <ul>
 
-
+    
     <li *ngFor="let employee of employees; let i = index">
 
       {{employee | json}}
@@ -22,18 +23,17 @@ import { EmployeeService } from '../employee.service';
 export class EmployeeDetailComponent implements OnInit {
 
   public employees = [];
+  public errorMsg;
+
   constructor(private _employeeService : EmployeeService) { }
 
   ngOnInit() {
 
-    this._employeeService.getEmployees().subscribe(function(data){
+    this._employeeService.getEmployees().subscribe(
+      
+     data => this.employees=data,
+     error =>  this.errorMsg = error);
 
-     
-      this.employees = data;
 
-
-     });
-
-  }
-
+}
 }
