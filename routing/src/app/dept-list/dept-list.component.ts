@@ -52,7 +52,8 @@ export class DeptListComponent implements OnInit {
 
 
   onClick(dept){
-      this.router.navigate(['departments', dept.id])  //Path, route parameter(dept.id)
+      //this.router.navigate(['departments', dept.id]) //Absolute navigation Path, route parameter(dept.id) 
+      this.router.navigate([dept.id], {relativeTo: this.route}); //relative route
   }
 
   iSelected(dept){
